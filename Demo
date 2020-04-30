@@ -1,0 +1,52 @@
+//通过百度数据获取中国新冠疫情
+//数据来源https://voice.baidu.com/act/newpneumonia/newpneumonia
+
+Document document = Jsoup.connect("https://voice.baidu.com/act/newpneumonia/newpneumonia").get();
+//数据存放在<script id="captain-config">中
+Element element = document.getElementsBy("captain-config");
+
+//存放在FastJson中进行解析
+JSONObject jsonObject = JSONObject.parseObject(element.data());
+//关于国内疫情数据存放在{component:value}中
+JSONArray jsonArray = jsonObject.getJSONArray("component");
+//jsonArray.size()==1
+jsonObject = jsonArray.getJSONObject(0);
+
+//实时数据的时间在mapLastUpdatedTime中
+String mapLastUpdatedTime = jsonObject.getString("mapLastUpdatedTime");
+System.out.println("数据时间:"+mapLastUpdatedTime);
+
+//疫情信息数据在summaryDataIn中
+jsonObject = jsonObject.getJSONObject("summaryDataIn");
+
+//遍历jsonObject获取相应想要数据
+
+for(Map.Entry<String,Object> entry:jsonObject.entrySet()){
+switch (entry.getKey()) {
+                case ("died"):
+                    System.out.println("累计死亡:" + entry.getValue());
+                    break;
+                case ("unconfirmed"):
+                    System.out.println("现有疑似:" + entry.getValue());
+                    break;
+                case ("asymptomatic"):
+                    System.out.println("无症状:" + entry.getValue());
+                    break;
+                case ("confirmed"):
+                    System.out.println("累计确诊:" + entry.getValue());
+                    break;
+                case ("curConfirm"):
+                    System.out.println("现有确诊:" + entry.getValue());
+                    break;
+                case ("cured"):
+                    System.out.println("累计治愈:" + entry.getValue());
+                    break;
+                case ("icu"):
+                    System.out.println("现有重症:" + entry.getValue());
+                    break;
+                case ("overseasInput"):
+                    System.out.println("境外输入:" + entry.getValue());
+                    break;
+//                case ("overseasInput"):System.out.println("境外输入:"+entry.getValue());break;
+            }
+}
