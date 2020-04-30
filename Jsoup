@@ -1,0 +1,28 @@
+//1.获取网页内容
+Document document = Jsoup.connect(urlPath).Get();
+//    .header("Accept-Encoding", "gzip, deflate")
+//    .userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0")
+//    .maxBodySize(0)
+//    .timeout(600000)
+//    .get();
+//可根据需求配置获取的大小、请求头、超时时间等
+//Document document = Jsoup.parse(htmlContext);  直接入参文本
+
+//2.使用选择器获取document的字段
+
+//JS模式
+Elements elements =  document.getElementsByTag("Title"); //获取<Title></Title>
+Element element =  document.getElementsByTag("Title").first();
+Element element = document.getElementsById("id")
+Elements elements = document.body();
+...
+
+JQuary模式
+document.selec("JQuery选择语句")
+...
+
+//3.获取选择到的组件的属性
+element.text();
+element.val();
+element.attr("href");//获取某个属性的值
+
