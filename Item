@@ -1,0 +1,27 @@
+//FastJson
+
+Object on = JsonObject.parse(String);
+JSONObject jsonObject = JSONObject.parseObject(String); 
+JSONArray jsonArray = JSONObject.parseArray(String)
+//parse+不同的类型返回不同的类型 JsonArray也一样
+//JSONObject解析的类型为{key:value}
+//JSONArray解析Json类型为[{key1:value1},{key2:value2}]
+
+//遍历JSONArray和JSONObject key:value
+//JSONObject
+//无序Set<Map.Entry<K,V>>，Map.Entry 是Map中的一个接口，他的用途是表示一个映射项（里面有Key和Value），而Set<Map.Entry<K,V>>表示一个映射项的Set。Map.Entry里有相应的getKey和getValue方法，即JavaBean，让我们能够从一个项中取出Key和Value。
+Set<Map.Entry<String,Object>> = jsonObject.entrySet();//把JSONObject变成一个无序的Set HashMap的底层实现用的时候一个Entry数组
+for(Map.Entry<String,Map> entity: jsonObject.entrySet()){
+  System.out.println(entity.getKey()+":"+entity.getValue());
+}
+
+
+
+//JSONArray
+//实际把JSONArray遍历出每个JSONObject再对JSONObjec进行遍历
+for(Object obect:jsonArray){
+  JSONObject jsonObject = JSONObject.parseObject(object.toString());
+  for(Set.Entity<String.Object> entity:jsonObject.entrySet()){
+    System.out.println(entity.getKey()+":"+entity.getValue());
+  }
+}
