@@ -1,5 +1,14 @@
 //FastJson
 
+//JSON：用于JSON格式字符串与JSON对象及JavaBean之间的转换
+//JSONObject：提供的json对象
+//JSONArray：json数组对象
+//SONObject当成一个Map<String,Object>来看，只是提供了更为丰富便捷的方法，方便我们对于对象属性的操作。//
+//把JSONArray当做一个List<Object>，可以把JSONArray看成JSONObject对象的一个集合。
+//由于JSONObject和JSONArray继承了JSON，所以说也可以直接使用两者对JSON格式字符串与JSON对象及javaBean之间做转换，不过为了避免混淆我们还是使用JSON。
+
+
+
 Object on = JsonObject.parse(String);
 JSONObject jsonObject = JSONObject.parseObject(String); 
 JSONArray jsonArray = JSONObject.parseArray(String)
